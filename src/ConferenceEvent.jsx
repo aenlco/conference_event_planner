@@ -72,11 +72,18 @@ const ConferenceEvent = () => {
             avItems.forEach((item) => {
                 totalCost += item.cost * item.quantity;
             });
+        } else if (section === "meals") {
+            mealsItems.forEach((item) => {
+                if (item.selected) {
+                    totalCost += item.cost * numberOfPeople;
+                }
+            });
         }
         return totalCost;
       };
     const venueTotalCost = calculateTotalCost("venue");
     const avTotalCost = calculateTotalCost("av");
+    const mealsTotalCost = calculateTotalCost("meals");
   };
 
     const navigateToProducts = (idType) => {
@@ -227,7 +234,7 @@ const ConferenceEvent = () => {
                                         </div>
                                     ))}
                                 </div>
-                                <div className="total_cost">Total Cost: </div>
+                                <div className="total_cost">Total Cost: {mealsTotalCost}</div>
 
 
                             </div>
